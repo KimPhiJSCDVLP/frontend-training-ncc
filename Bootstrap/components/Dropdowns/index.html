@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdowns</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Dropdowns</h1>
+        <div class="bd-example">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="dropMenuOne">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        </div>
+        <div class="bd-example">
+            <h1 class="heading">Split DropdownMenu</h1>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger">Action</button>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" id="buttonsplit" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" id="dropMenuTwo">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bd-example">
+            <h1 class="heading">Navbar with Dropdown</h1>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Navbar</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" id="dropMenuThree">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+        </div>
+    </div>
+</body>
+<script src="./app.js"></script>
+</html>

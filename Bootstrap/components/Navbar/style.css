@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+.bd-example {
+      position: relative;
+      padding: 1rem;
+      margin: 1rem -0.75rem 0;
+      border: 1px solid #dee2e6;
+      border-width: 1px 0 0;
+      margin: auto;
+      width: 800px;
+      
+  }
+.bd-example::after {
+      display: block;
+      clear: both;
+      content: "";
+  }
+  h1.heading{
+    text-align: center;
+}
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+.nav-link.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: default;
+}
+.justify-content-center{
+    justify-content: center ;
+}
+.flex-column{
+    flex-direction: column;
+}
+.dropdown{
+    position: relative;
+}
+.dropdown-toggle {
+    white-space: nowrap;
+}
+.dropdown-menu{
+    display: none;
+}
+.dropdown-toggle::after{
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+
+}
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.dropdown-item:hover {
+    color: #1e2125;
+    background-color: #e9ecef;
+}
+.dropdown-menu.active{
+    display: block;
+}
