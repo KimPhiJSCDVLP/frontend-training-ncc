@@ -18,7 +18,12 @@ function sumArrayValues(arr) {
   }
   const numbers = [1, 2, 3, 4, 5];
   console.log(sumArrayValues(numbers));
-
+// Anonymous Fucnt
+const anonymousFun = function() {
+  console.log(
+    'I am an anonymous function and my value is stored in anonymousFun'
+  )
+}
 //Arrow Fucnt
 const fullName = (firstName,lastName)=>{
     return `${lastName} ${firstName}`;

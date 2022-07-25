@@ -39,10 +39,11 @@ console.log('myArray',myArray)
  console.log(string.toLowerCase()); //thuan
     //substr() : Cắt chuỗi
     // cần 2 đối số chỉ mục đầu và số kí tự cắt
- console.log(string.substr(3,2));  //an
+ console.log(string.substr(3,3));  //uan
     //split : Tách chuỗi
  let stringName = 'Thuan Anh'
- console.log(string.split('')); //["Thuan","Anh"]
+ console.log(stringName.split());
+ console.log(stringName.split('')); //["Thuan","Anh"]
  let trimString = '  Thuan Anh   ';
  console.log(trimString.trim('')); //ThuanAnh
     //includes : check xem có kí tự này tồn tại trong chuỗi không
@@ -58,6 +59,42 @@ console.log('myArray',myArray)
     //concat : nối các chuỗi
  let stringConcat = 'Anh';
  console.log(string.concat(stringConcat)); // Thuan Anh
+   //startsWith
+   let startsWith = 'Love is the best to in this world'
+   console.log(startsWith.startsWith('Love'))   // true
+   console.log(startsWith.startsWith('love'))   // false
+   console.log(startsWith.startsWith('world'))  // false
+
+   //endsWith
+   //search
+   console.log(startsWith.search('Love')) //0
+   //repeat
+   let repeat = 'Thuan';
+   console.log(repeat.repeat(10)); //thuan*10
+ // check typeOf data
+   let firstName = 'Asabeneh'      // string
+   let lastName = 'Yetayeh'        // string
+   let country = 'Finland'         // string
+   let city = 'Helsinki'           // string
+   let ageNB = 250                   // number, it is not my real age, do not worry about it
+   let job                         // undefined, because a value was not assigned
+
+   console.log(typeof 'Asabeneh')  // string
+   console.log(typeof firstName)   // string
+   console.log(typeof 10)          // number
+   console.log(typeof 3.14)        // number
+   console.log(typeof true)        // boolean
+   console.log(typeof false)       // boolean
+   console.log(typeof NaN)         // number
+   console.log(typeof job)         // undefined
+   console.log(typeof undefined)   // undefined
+   console.log(typeof null)        // object
+
+// CHANGE DATA TYPE
+   let num = '10'
+   let numInt = parseInt(num)
+   console.log(numInt) // 10
+
  
 
 
