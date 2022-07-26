@@ -6,3 +6,4 @@
 -   
 ### While  : Lặp khi điều kiện còn đúng
 -    Không cần biết số lần lặp cụ thể
+### Push vao mang : firstelement

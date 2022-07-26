@@ -23,7 +23,6 @@ console.log('myArray',myArray)
  const PI = Math.PI;
  let a = 100;
  console.log(Math.sqrt(a));
- console.log(Math.abs(a));
  let random = Math.random()
  console.log(random);
 //String method

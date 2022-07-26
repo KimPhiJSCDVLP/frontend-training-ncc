@@ -51,9 +51,17 @@ console.log(logo.has('YOUTUBE')); //TRUE
  console.log(D); //2,3,4,5
 
  //Difference of sets : Tìm sự khác nhau giữa 2 SET
- let e = b.filter((num)=>A.has(num));
+ let e = a.filter((num)=> !B.has(num));
  console.log(e);
  let E = new Set(e);
- console.log(E); //2,3,4,5
+ console.log(E); //1
 
+ /* Map : Giống Object nhưng cho phép tất cả các kiểu dữ liệu thiết lập key trong key-value
+   */
 
+countries = [
+   ['VietNam','HaNoi'],
+   ['ThaiLan', 'BANGKOK']
+   ['NhatBan','TOKYO'],
+]
+ const map = new Map (countries)

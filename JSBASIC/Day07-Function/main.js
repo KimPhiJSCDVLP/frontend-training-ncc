@@ -25,7 +25,7 @@ const anonymousFun = function() {
   )
 }
 //Arrow Fucnt
-const fullName = (firstName,lastName)=>{
+const fullName = (firstName, lastName) =>{
     return `${lastName} ${firstName}`;
 }
 console.log(fullName('Thuan','NguyenLeAnh'));
