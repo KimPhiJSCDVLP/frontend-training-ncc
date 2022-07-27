@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoApp from './page/TodoApp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 style={{'width':'207px','margin':'50px auto','color':'#091E42'}}>Todo App pro</h1>
+      <div className='container' style={{'width':'50%', 'margin':'0 auto'}}>
+      <TodoApp/>
+
+      </div>
     </div>
   );
 }
