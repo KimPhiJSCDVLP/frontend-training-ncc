@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+### useState
+-   Dùng useState lưu trữ mảng data, update và thêm mới task
+### Read Data
+-   Check điều kiện state todo nếu có thì render list to do
+        +   dùng method map (task,index) để duyệt qua data
+        +   dùng method sort để sắp xếp các phần tử theo id 
+        +   Dùng React.Fragment cho phép return ra nhiều element mà không cần thêm các ele ko cần thiết khác
+### Create Task
+-   state nhận vào value của input
+-   khi thay đổi thì setNewState sẽ được gọi và state sẽ được cập nhật giá trị
+-   khi click addStask , chúng ta khởi tạo 1 object chứa thông tin của newStask (id, title, status) , sau đó gọi setTodo để re-render lại bao gồm [...todo,Object mới];
+-   Gọi setNewStack để clear giá trị đã thêm
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Update Task
+-   Khi click button edit sẽ gọi setUpdateData để lấy state updateData hiện tại
+    +   sau đó onChange input gọi tới changeTask để tạo object mới 
+    +   tiếp theo gọi lại setUpdateData để lưu state hiện tại
+-   Khi click buuton update thì updateTask được gọi :
+    +   Dùng filter lọc qua list todo hiện tại và bỏ qua todo có id === update.id, thu được list task 
+    +   Gộp list task này với state updateData hiện tại
+    +   Gọi setTodo để cập nhật state todo
+    +   setUpDateData xóa dữ liệu đã nhập
+### Cancel Update
+-   Gọi setUpdateData('') rỗng để nó không render giá trị mới
+### Delete Task
+-   filter todo hiện tại lấy ra các task khác id với task bị xóa
+-   setTodo ( cập nhật lại state)
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Task done
+-   truyền id của task vào hàm markDone
+-   dùng map duyệt todoList theo id cần markDone , sau đó toggle status từ true thành false hoặc nguocwj lại , và return lại task này 
+-   sau đó gọi setTodo update state
