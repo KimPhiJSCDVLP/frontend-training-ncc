@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-export default function FormSearch() {
+export default function FormSearch(props) {
   return (
     <>
     <div className="form-group mb-2">
@@ -12,8 +12,9 @@ export default function FormSearch() {
         className="form-control"
         id="createItem"
         placeholder="Item Name"
+        onChange={props.handleOnchangeInputSearch}
       />
-      <button type="submit" className="btn btn-primary ">
+      <button onClick={props.search} type="submit" className="btn btn-primary ">
       Search
       </button>
     </div>

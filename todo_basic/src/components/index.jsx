@@ -39,16 +39,7 @@ export default function Index() {
         }, 2000);
     }, []);
 
-    // useEffect(() => {
-    //     const stroragedTodoList = localStorage.getItem(TODO_APP_STRORAGE);
-    //     if(stroragedTodoList) {
-    //         setItems(JSON.parse(stroragedTodoList));
-    //     }
-    // })
-    // //localStroge
-    // useEffect (() => {
-    //     localStorage.setItem(TODO_APP_STRORAGE, JSON.stringify(items))
-    // }, [items])
+
     //handle remove
 
     const handleRemove = (id) => {
@@ -70,9 +61,7 @@ export default function Index() {
       const handleOnchangeInputSearch = (event) => {
         setInputSearchValue(event.target.value);
       };
-    //   var filterCourse = course.filter(function(course,index,array){
-    //     return course.price > 200;
-    //   })
+
     // handle add
     const onChangeInput = useCallback((e) => {
         setTextInput(e.target.value);
@@ -93,7 +82,7 @@ export default function Index() {
     return (
         <>
             {loading ? (
-                <div id='loader'></div>
+                <div id="loader" />
             ) : 
             ( <div className="container animate-bottom ">
             <div className="row">
@@ -102,35 +91,7 @@ export default function Index() {
             <div className="row">
                 <div className="col-12">
                     <div className="wrapper">
-                        {/* <Home onAddButton = {onAddButton} handleAdd = {handleAdd}  /> */}
-                        <div className="form-group mb-2">
-                            <label htmlFor="createItem" className="sr-only">
-                                Create
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Item Name"
-                                onChange={onChangeInput}
-                            />
-                            <button onClick={onAddButton} type="submit"  className="btn btn-primary ">
-                                Create
-                            </button>
-                        </div>
-                        <div className="form-group mb-2">
-                            <label htmlFor="createItem" className="sr-only">
-                                Create
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Item Name"
-                                onChange={handleOnchangeInputSearch}
-                            />
-                            <button onClick={search} type="submit"  className="btn btn-primary ">
-                                Search
-                            </button>
-                        </div>
+                        <Home search = {search} handleOnchangeInputSearch = {handleOnchangeInputSearch} onAddButton = {onAddButton} handleAdd = {onChangeInput} />
                         <ListTodo handleRemove={handleRemove} items={items}/>
                     </div>
                 </div>

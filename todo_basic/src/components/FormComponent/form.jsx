@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-export default function Form(onAddButton,handleAdd) {
+export default function Form(props) {
   return (
     <>
     <div className="form-group mb-2">
@@ -12,9 +12,9 @@ export default function Form(onAddButton,handleAdd) {
         className="form-control"
         id="createItem"
         placeholder="Item Name"
-        onChange={handleAdd}
+        onChange={props.handleAdd}
       />
-      <button onClick={onAddButton} type="submit"  className="btn btn-primary ">
+      <button onClick={props.onAddButton} type="submit"  className="btn btn-primary ">
         Create
       </button>
     </div>

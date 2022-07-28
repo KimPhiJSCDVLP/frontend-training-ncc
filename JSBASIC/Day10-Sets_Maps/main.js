@@ -58,10 +58,24 @@ console.log(logo.has('YOUTUBE')); //TRUE
 
  /* Map : Giống Object nhưng cho phép tất cả các kiểu dữ liệu thiết lập key trong key-value
    */
-
+// Khởi TẠO MAP
 countries = [
    ['VietNam','HaNoi'],
-   ['ThaiLan', 'BANGKOK']
+   ['ThaiLan', 'BANGKOK'],
    ['NhatBan','TOKYO'],
 ]
- const map = new Map (countries)
+ const map = new Map (countries);
+ console.log(map);
+
+ // ADD value to map
+map.set('ABc','xyz')
+console.log(map);
+// get value in map
+ const getMap = map.get('VietNam');
+ console.log(getMap); //HaNoi
+ // check element exist in map
+ console.log(map.has('VietNam')); //true
+ // get all value in map using loop
+ for (const [country, city] of map){
+   console.log(country, city)
+   }
