@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+    <button>Click Me</button>
+    <input type="text" id="mass" placeholder="Mass in Kilogram" />
+    <input type="text" id="height" placeholder="Height in meters" />
+    <button>Calculate BMI</button>
+    <script>
+        // click 
+      const button = document.querySelector('button')
+      button.addEventListener('click', e => {
+        console.log('e gives the event listener object:', e)
+        console.log('e.target gives the selected element: ', e.target)
+      })
+
+      // double click
+      button.addEventListener('dblclick', e => {
+        console.log('e gives the event listener object:', e)
+        console.log('e.target gives the selected element: ', e.target)
+      })
+      // get value input
+
+      const mass = document.querySelector('#mass')
+      const height = document.querySelector('#height')
+      const button2 = document.querySelector('button')
+
+      let bmi
+      button2.addEventListener('click', () => {
+        bmi = mass.value / height.value ** 2
+        alert(`your bmi is ${bmi.toFixed(2)}`)
+        console.log(bmi)
+      })
+    </script>
+  </body>
+</html>
