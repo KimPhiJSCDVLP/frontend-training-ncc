@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="container">
+    	<div class="row justify-content-center">
+    		<div class="col-md-6">
+				<h1 class="text-center">Validation Form</h1>
+    			<form action="" method="" name="register" onsubmit="return FormValidate()">
+    			  	<div class="form-row">
+	    			    <div class="form-group col-md-12">
+	    			      <label for="name">Họ tên</label>
+	    			      <input type="text" name="name" class="form-control" id="name" />
+                  <span class="text-danger" id="errorName"></span>
+	    			    </div>
+	    			</div>
+
+	    			<div class="form-row">
+	    			    <div class="form-group col-md-12">
+	    			      <label for="phone">Phone</label>
+	    			      <input type="text" name="phone" class="form-control" id="phone" />
+                  <span class="text-danger" id="erorPhone"></span>
+	    			    </div>
+    			  	</div>
+
+    			  	<div class="form-row">
+	    			    <div class="form-group col-md-12">
+	    			      <label for="email">Email </label>
+	    			      <input type="text" name="email" class="form-control" id="email" />
+                  <span class="text-danger" id="erorEmail"></span>
+	    			    </div>
+    			  	</div>
+
+    			  	<div class="form-row">
+	    			    <div class="form-group col-md-12">
+	    			      <label for="pass">Mật khẩu </label>
+	    			      <input type="password" name="passw" class="form-control" id="pass" />
+                  <span class="text-danger" id="errorPass"></span>
+	    			    </div>
+    			  	</div>
+
+    			  	<div class="form-row">
+	    			    <div class="form-group col-md-12">
+	    			      <label for="passw">Nhập lại mật khẩu</label>
+	    			      <input type="password" name="con_passw" class="form-control" id="passw" />
+                  <span class="text-danger" id="errorConPass"></span>
+	    			    </div>
+    			  	</div>
+
+    			  <button type="submit" class="btn btn-primary">Gửi thông tin</button>
+    			  <button type="reset" class="btn btn-danger">Xóa thông tin</button>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+	<script>
+		function FormValidate(){
+			var name = document.getElementById('name').value;
+			var errorName = document.getElementById('errorName');
+			var regexName = /^[^\d+]*[\d+]{0}[^\d+]*$/;
+
+			var phone = document.getElementById('phone').value;
+			var erorPhone = document.getElementById('erorPhone');
+			var regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+			var email = document.getElementById('email').value;
+			var errorEmail = document.getElementById('erorEmail');
+			var reGexEmail = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
+			
+			if (name == '' || name == null) {
+				errorName.innerHTML = "Họ tên không được để trống!";
+			}else if(!regexName.test(name)){
+				errorName.innerHTML = "Họ tên không hợp lệ!";
+				return false;
+			}else{
+				errorName.innerHTML = '';
+			}
+
+			if (phone == '' || phone == null) {
+				erorPhone.innerHTML = "Số điện thoại không được để trống!";
+			}else if(!regexPhone.test(phone)){
+				erorPhone.innerHTML = "SĐT không hợp lệ!";
+				return false;
+			}else{
+				erorPhone.innerHTML = '';
+			}
+
+			if (email == '' || email == null) {
+				errorEmail.innerHTML = "Email không được để trống!";
+			}else if(!reGexEmail.test(email)){
+				errorEmail.innerHTML = "Email không hợp lệ!";
+				email = '';
+			}else{
+				errorEmail.innerHTML = '';
+			}
+
+			var passW = document.getElementById('pass').value;
+			var errorPass = document.getElementById('errorPass');
+      var reGexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+
+			if (passW == '' || passW == null) {
+				errorPass.innerHTML = "Mật khẩu vui lòng không để trống!";
+			}else if(!reGexPass.test(passW)) {
+        errorPass.innerHTML = "Mật khẩu phải chứa ít nhất 1 số , 1 chữ viết hoa độ dài lơn hơn 8 kí tự";
+      }
+        else{
+				errorPass.innerHTML = "";
+			}
+
+			var ConPass = document.getElementById('passw').value;
+			var errorConPass = document.getElementById('errorConPass');
+
+			if (ConPass == '' || ConPass == null) {
+				errorConPass.innerHTML = "Xác nhận mật khẩu vui lòng không để trống!";
+			}else if(ConPass != passW){
+				alert("Xác nhận mật khẩu không trùng khớp!");
+			}else{
+				errorConPass.innerHTML = "";
+			}
+
+			if (name && phone && email && ConPass && passW && passW == ConPass) {
+				alert("Đăng ký thành công!");
+			}else{
+			}
+			return false;
+		}
+	</script>
+  </body>
+</html>

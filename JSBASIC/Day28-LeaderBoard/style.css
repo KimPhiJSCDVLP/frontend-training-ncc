@@ -1,0 +1,29 @@
+.list-item{
+    width: 100%;
+}
+.item{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: bisque;
+    padding: 10px 10px;
+}
+.item-name{
+    display: flex;
+    width: 25%;
+}
+.item-country{
+    display: flex;
+    width: 25%;
+}
+.item-score{
+    display: flex;
+    width: 25%;
+}
+.handle{
+    display: flex;
+
+}
+.btn{
+    margin: 0px 10px !important;
+}
