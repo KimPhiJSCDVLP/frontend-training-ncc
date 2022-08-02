@@ -1,1 +1,4 @@
-# frontend-training-ncc
+
+<!-- END DAY 2 -->
+
+<!-- DAY 3 -->
