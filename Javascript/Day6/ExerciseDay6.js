@@ -589,4 +589,3 @@
 //     ortherArr.push(countries[i].toUpperCase())
 // }
 // console.log(ortherArr.reverse());
-
