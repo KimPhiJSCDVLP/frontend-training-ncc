@@ -815,3 +815,75 @@
 //     }
 
 // isPrime(11)
+
+// ==================================================================================================
+// EX16: Write a functions which checks if all items are unique in the array.
+// ==================================================================================================
+
+// function uniqueCheck(arr) {
+//     let newArr = []
+//     for (let i = 0; i < arr.length; i++) {
+//         let flag = false
+//         for (let j = 0; j < arr.length; j++) {
+//             if(i != j && arr[i] == arr[j]) {
+//                 flag = true
+//             }  
+//         }
+//         if(!flag) {
+//             newArr.push(arr[i])
+//         }
+//     }
+//     console.log(newArr);
+// }
+// uniqueCheck([1, 2, 3, 4, 4])
+
+// ==================================================================================================
+// EX17: Write a function which checks if all the items of the array are the same data type.
+// ==================================================================================================
+
+// function checkDataType(arr) {
+//     let newArr = []
+//     for(let i = 0; i < arr.length; i++) {
+//         let flag = false
+//         for(let j = 0; j < arr.length; j++) {
+//             if(i != j && typeof arr[i] == typeof arr[j]) {
+//                 flag = true
+//             }
+//         }
+//         if(!flag) {
+//             newArr.push(arr[i])
+//         }
+//     }
+//     console.log(newArr);
+// }
+// checkDataType([1, 2, 'abc', 4, 5]);
+
+// ==================================================================================================
+// EX19: Write a function which returns array of seven random numbers in a range of 0-9. 
+// All the numbers must be unique.
+// ==================================================================================================
+
+// function randomNumInArr() {
+//     let num = '0123456789'
+//     let newArr = []
+//     for(let i = 0; i < 7; i++) {
+//         let stringToArr = ''
+//         stringToArr += num.charAt(Math.floor(Math.random() * 10))
+//         newArr.push(stringToArr)
+//     }
+//     console.log(newArr);
+// }
+// randomNumInArr()
+
+// ==================================================================================================
+// EX20: Write a function called reverseCountries, it takes countries array and first it copy 
+// the array and returns the reverse of the original array
+// ==================================================================================================
+
+// import countries from "./country.js";
+
+// function reverseCountries(argument) {
+//     const reversed = argument.reverse()
+//     return console.log(reversed);
+// }
+// reverseCountries(countries)
