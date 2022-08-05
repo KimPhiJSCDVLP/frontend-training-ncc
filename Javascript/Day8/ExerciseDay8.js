@@ -401,9 +401,18 @@ const products = [
 
 
 // const likeProduct = (products) => {
-//     for(let product of products) {
-//         let likeProduct = product.likes[0]
-//         console.log(likeProduct);
+//     for(let i = 0; i < products.length; i++) {
+//         let likeProduct = products[i].likes
+//         for(let j = 0; j < likeProduct.length; j++) {
+//             if(likeProduct[j] == '') {
+//                 likeProduct[j] = 'fg12cy'
+//             } else {
+//                 likeProduct[j] = ''
+//             }
+
+//         }
+//         console.log(products[i]);
+
 //     }       
 // }
 // likeProduct(products)
