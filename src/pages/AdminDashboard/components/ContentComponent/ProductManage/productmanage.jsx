@@ -44,7 +44,8 @@ export default function ProductManage() {
           key: 'action',
           render: (_, record) => (
             <Space size="middle">
-              <a><EditOutlined onClick={() => {showModal(record.key)}} /></a>
+              <a><EditOutlined onClick={() => { showModal(record.key)
+                }} /></a>
               <Popconfirm title={`"Sure to delete product" ${record.key} ?`} onConfirm={() => handleDelete(record.key)}>
                   <a><DeleteOutlined  style={{color: 'red' }} /></a>
               </Popconfirm>
@@ -98,20 +99,30 @@ export default function ProductManage() {
      
     const [curentDataEdit, setCurentDataEdit] = useState(null);
 
-
     const showModal = (id) => {
-        console.log(id,'id');
-        const currentRow = data.find(item => item.key === id);
-        // const productUpdate = {
-        //     key : currentRow.key,
-        //     name: currentRow.name,
-        //     math: currentRow.math,
-        //     english: currentRow.english,
-        // }
-        setIsModalVisible(true);
-        console.log(currentRow);
-        setCurentDataEdit(curentDataEdit)
+      const currentRow = data.find(item => item.key === id);
+      setIsModalVisible(true);
+      setCurentDataEdit({
+        key : currentRow.key,
+        username: currentRow.name,
+        mathcore :currentRow.math,
+        englishcore :currentRow.english
+      })
     };
+    const editProductHandle = (e) => {
+       let newEntry = {
+          key : `${curentDataEdit.key}`,
+          name : e.username,
+          math : e.mathcore,
+          english : e.englishcore,
+        }
+        let recordPrev = [...data].filter(item => item.key !== curentDataEdit.key)
+        setData([
+          newEntry,
+          ...recordPrev
+        ])
+    };  
+
     const handleCancel = () => {
         setIsModalVisible(false);
     };
@@ -138,9 +149,7 @@ export default function ProductManage() {
     };
     //form
 
-    const editProductHandle = () => {
-        
-     };
+   
     return(
         <>
         <Title className='product-manage' level={3}>Product Manage
@@ -151,7 +160,7 @@ export default function ProductManage() {
         
         <Table columns={columns} dataSource={data} onChange={onChange} />
         {/* Modal edit */}
-        <EditProduct  curentDataEdit = {curentDataEdit} showModal = {showModal} visible={isModalVisible}  editProductHandle = {editProductHandle} onCancel={handleCancel} />
+        <EditProduct  curentDataEdit = {curentDataEdit}  visible={isModalVisible}  editProductHandle = {editProductHandle} onCancel={handleCancel} />
         <AddProduct visible ={isModalAddVisible} addProductHandle = {addProductHandle}  onCancel={handleCancelAdd} />
         </>
     )

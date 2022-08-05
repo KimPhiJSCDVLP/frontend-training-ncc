@@ -1,6 +1,8 @@
 import React from 'react'
 import { Input,Button, Modal, Form } from 'antd'
 import Title from 'antd/lib/typography/Title';
+import ReactQuill from "react-quill"
+import 'react-quill/dist/quill.snow.css'
 export default function AddProduct(props) {
   return (
     <Modal  width={1000} visible={props.visible} footer={null} onCancel={props.onCancel}>
@@ -15,7 +17,8 @@ export default function AddProduct(props) {
                 label="Username"
                 name="username"
             >
-                <Input/>
+             <ReactQuill/>
+            
             </Form.Item>
             <Form.Item
                 label="Mathcore"

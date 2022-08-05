@@ -1,22 +1,29 @@
 import React from 'react'
-
+import Login from '../Login/login'
+import  { useState } from "react";
+import SignUp from '../SignUp/signup';
 export default function Modal(props) {
-   
+
+  const [activeTab, setActiveTab] = useState("tab1");
+    const handleTab1 = () => {
+        setActiveTab("tab1");
+      };
+      const handleTab2 = () => {
+        setActiveTab("tab2");
+      };
   return (
     <div className={`modal ${props.handleOpen && 'show' }`}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <ul className="nav nav-tabs card-header-tabs">
-              <li className="nav-item item-menu">
-                <a href="" className="navlink">
+            <li className={activeTab === "tab1" ? "nav-item item-menu active" : "nav-item item-menu"} 
+                  onClick = {handleTab1}>
                   Signin
-                </a>
               </li>
-              <li className="nav-item item-menu">
-                <a href="" className="navlink">
+              <li className={activeTab === "tab2" ? "nav-item item-menu active" : "nav-item item-menu"} 
+                  onClick = {handleTab2}>
                   SignUp
-                </a>
               </li>
             </ul>
             <button 
@@ -29,43 +36,9 @@ export default function Modal(props) {
               </span>
             </button>
           </div>
-          <div className="modal-body">
-            <form action="" className="signin-form">
-              <div className="mb-3">
-                <label htmlFor="" className="form-label">
-                  Email
-                </label>
-                <input type="text" className="form-control" />
-                <div className="invalid-message">
-                  Please provide a valid email address
-                </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="" className="form-label">
-                  Password
-                </label>
-                <div className="password-toggle">
-                  <input type="password" className="form-control" />
-                  <label htmlFor="" className="password-toggle-btn">
-                    <input type="checkbox" className="password-toggle-check" />
-                    <span className="password-toggle-indicatior" />
-                  </label>
-                </div>
-              </div>
-              <div className="mb-3 remember-password">
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" />
-                  <label htmlFor="" className="form-check-label">
-                    Remember me
-                  </label>
-                </div>
-                <a href="">Forgot password</a>
-              </div>
-              <button className="btn btn-danger w-100" type="submit">
-                Signin
-              </button>
-            </form>
-          </div>
+          {activeTab === "tab1" ?
+          <Login/>  
+        : <SignUp/>}
         </div>
       </div>
     </div>
