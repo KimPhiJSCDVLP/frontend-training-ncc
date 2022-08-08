@@ -1,0 +1,14 @@
+- Callback function
+- Returning function
+- setTimeOut
+- setInterval
+- forEach
+- map
+- filter
+- reduce
+- every
+- find
+- findIndex
+- some
+- Sorting Numeric values
+- Sorting Object Arrays
