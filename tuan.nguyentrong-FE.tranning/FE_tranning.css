@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header-container{
+    background-color: #7952b3;
+}
+
+.header-container .navbar-brand{
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+.header-container .navbar-nav-svg{
+    width: 1rem;
+    height: 1rem;
+}
+
+.header-container .navbar-nav .nav-link{
+    color: rgba(255,255,255,0.7);
+}
+
+.header-container .navbar-nav .nav-link:hover{
+    color: #fff;
+}
+
+.header-container .navbar-nav .nav-link.active{
+    color: #fff;
+}
+
+.header-container .btn-header-download{
+    font-weight: 600;
+    color: #ffe484;
+    border-color: #ffe484;
+}
+
+.header-container .btn-header-download:hover{
+    background-color: #ffe484;
+    color: #000;
+}
+
