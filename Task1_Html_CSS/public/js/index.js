@@ -220,19 +220,19 @@ sideMenuIcon.addEventListener("click", function(event){
     }
 })
 
-const openSubmenuBtns = $$(".sub-btn");
-console.log(openSubmenuBtns);
+// const openSubmenuBtns = $$(".sub-btn");
+// console.log(openSubmenuBtns);
 
 
-openSubmenuBtns.forEach(btn => {
-    btn.addEventListener("click",function(){
-        const subMenu = btn.querySelector(".sub-menu");
-        if (subMenu.classList.contains("active")){
-            subMenu.classList.remove("active");
-        } else {
-            subMenu.classList.add("active");
-        }
-    })
-})
+// openSubmenuBtns.forEach(btn => {
+//     btn.addEventListener("click",function(){
+//         const subMenu = btn.querySelector(".sub-menu");
+//         if (subMenu.classList.contains("active")){
+//             subMenu.classList.remove("active");
+//         } else {
+//             subMenu.classList.add("active");
+//         }
+//     })
+// })
 
 
