@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    height: 8000px;
 }
 
 /* Header */
@@ -39,5 +40,102 @@ body{
 .header-container .btn-header-download:hover{
     background-color: #ffe484;
     color: #000;
+}
+
+/* Subnavbar */
+.subnavbar{
+    background-color: rgba(255, 255, 255, 0.685);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%);
+}
+@media (max-width: 767.98px){
+    .subnavbar .search-form{ width: 100%; }
+}
+.subnavbar .search-form{
+    position: relative;
+}
+.subnavbar .search-form::after{
+    position: absolute;
+    top: .4rem;
+    right: .4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    padding-right: .25rem;
+    padding-left: .25rem;
+    font-size: .75rem;
+    color: #6c757d;
+    content: "Ctrl + /";
+    border: 1px solid #dee2e6;
+    border-radius: .125rem;
+}
+.subnavbar .search-input:focus{
+    border-color: rgba(107, 107, 107, 0.466);
+    box-shadow: 0 0 0 3px #7952b34e;
+}
+.subnavbar .btn-version-toggle{
+    border-color: #ced4da;
+}
+.subnavbar .btn-version-toggle:hover{
+    border-color: #7952b3;
+    background-color: #fff;
+    color: #7952b3;
+}
+.subnavbar .btn-version-toggle:focus{
+    box-shadow: 0 0 0 3px #7952b34e;
+}
+.subnavbar .dropdown-item.current{
+    font-weight: 600;
+    background-image: url(https://cdn-icons-png.flaticon.com/512/32/32282.png);
+    background-repeat: no-repeat;
+    background-position: right 1rem top 0.6rem;
+    background-size: .75rem .75rem;
+}
+.subnavbar .btn-sidebar-collapse{
+    padding: 0.25rem;
+}
+.subnavbar .btn-sidebar-collapse:hover, .subnavbar .btn-sidebar-collapse:focus{
+    color: #7952b3;
+    box-shadow: 0 0 0 3px #7952b34e;
+}
+.btn-sidebar-collapse:not(.collapsed) .bi-arrows-expand{
+    display: none;
+}
+.btn-sidebar-collapse:not(.collapsed) .bi-arrows-collapse{
+    display: inline-block;
+}
+.btn-sidebar-collapse .bi-arrows-collapse{
+    display: none;
+}
+.sidebar-collapse .btn{
+    position: relative;
+    color: rgba(0,0,0,0.85);
+    font-weight: 600;
+}
+.sidebar-collapse .btn:focus{
+    background-color: rgba(121,82,179,0.1);
+    box-shadow: 0 0 0 1px rgb(121 82 179 / 70%);
+}
+.sidebar-collapse .btn::before{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    content: "";
+    border-top: 3px solid rgb(127 127 127);
+    border-right: 3px solid rgb(127 127 127);
+    border-radius: 2px;
+    transition: 0.3s;
+    transform: rotate(135deg);
+    top: 34%;
+    left: 10px;
+}
+.sidebar-collapse .btn.collapsed::before{
+    transform: rotate(45deg);
+}
+.sidebar-collapse .child-collapse a{
+    text-decoration: none;
+    color: #6c757d;
 }
 
