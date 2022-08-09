@@ -1,0 +1,155 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: url(https://github.com/nccasia/ncc-javascript/blob/main/30-Days-Of-JavaScript/24_Day_Project_solar_system/24_day_starter/images/galaxy.gif?raw=true);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    margin: 50px 0;
+    text-shadow: 3px 3px rgba(156, 3, 238, 0.58);
+}
+
+.dpnone {
+    display: none;
+}
+
+.group-input {
+    width: 50%;
+    height: 36px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+
+.group-input input {
+    height: 100%;
+    width: 30%;
+    outline: none;
+    padding-left: 5px;
+}
+
+.group-input select {
+    height: 100%;
+    width: 30%;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.group-input select option {
+    background-color: rgba(0, 0, 0, 0.443);
+    color: #fff;
+    border: 1px solid rgba(1, 1, 1, 0.158);
+    cursor: pointer;
+    
+}
+
+.group-input button {
+    height: 100%;
+    width: 30%;
+    border-radius: 3px;
+    background-color: rgba(84, 91, 99, 0.612);
+    color: rgb(255, 255, 255);
+}
+
+.group-input button:hover {
+    background-color: rgba(84, 91, 99, 0.829);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.219);
+    margin-top: 20px;
+}
+
+.content-container #mainImg {
+    width: 300px;
+    height: 300px;
+    margin: 30px 50%;
+    transform: translateX(-50%);
+    display: block;
+}
+
+.content-container #mainImg.active {
+    display: none;
+}
+
+.content-container #img {
+    width: 300px;
+    margin: 39px;
+    display: block;
+}
+
+.content-container #img.active {
+    display: none;
+}
+
+.content {
+    display: flex;
+}
+
+.content .content-title {
+    background-color: rgba(255, 255, 255, 0.13);
+    text-align: center;
+    margin: 8% 10%;
+    color: rgba(255, 255, 255, 0.772);
+    display: none;
+}
+
+.content .content-title.active {
+    display: block;
+}
+
+.content .content-title p {
+    font-size: 1.3rem;
+    /* margin: 20px 0; */
+    padding: 20px 100px;
+}
+
+.content .content-title .circle {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.171);
+    border-radius: 100%;
+    margin-left: 50%;
+    margin-bottom: 30px;
+    transform: translateX(-50%);
+}
+
+.massIsRequired {
+    margin: 39px auto;
+}
+
+.massIsRequired p {
+    font-size: 1.5rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 200px;
+    padding-right: 200px;
+    color: rgb(254, 254, 254);
+    background-color: rgba(255, 255, 255, 0.123);
+    display: none;
+}
+
+.massIsRequired p.active {
+    display: block;
+}
+
+.circle h2 {
+    font-size: 1rem;
+    padding-top: 39px;
+    color: #fff;
+}

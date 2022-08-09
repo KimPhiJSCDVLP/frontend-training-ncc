@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./ExerciseDay24.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate a weight of an object on a planet</h1>
+        <div class="group-input">
+            <input onkeyup="inputValue()" id="inputKilo" type="text" placeholder="Mass in kilogram">
+                <select onchange="selected()" placeholder="select your beverage" id="select">
+                    <option class="dpnone" value="">--Select plannet--</option>
+                    <option value="5">MERCURY</option>
+                    <option value="10">VENUS</option>
+                    <option value="20">EARTH</option>
+                    <option value="30">MOON</option>
+                    <option value="40">MARS</option>
+                    <option value="50">JUPITER</option>
+                    <option value="60">SATURN</option>
+                    <option value="70">URANUS</option>
+                    <option value="80">NEPTUNE</option>
+                    <option value="90">PLUTO</option>
+                </select>
+            
+            <button onclick="calculateWeight()" id="btn">Calculate weight</button>
+        </div>
+        <div class="content-container">
+            <div class="content">
+                <img id="mainImg" src="https://github.com/nccasia/ncc-javascript/blob/main/30-Days-Of-JavaScript/24_Day_Project_solar_system/24_day_starter/images/earth.png?raw=true" alt="">
+                <img id="img">
+                <div class="content-title">
+                    <p>The weight of the object on </p>
+                    <div class="circle">
+                        <h2 id="result"></h2>
+                    </div>
+                </div>
+                <div class="massIsRequired">
+                    <p>Mass is required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./ExerciseDay24.js"></script>
+</body>
+</html>

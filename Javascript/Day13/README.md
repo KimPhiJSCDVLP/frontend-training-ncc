@@ -1,0 +1,8 @@
+- console.warn
+- console.table
+- console.time - console.timeEnd
+- console.info
+- console.assert
+- console.group
+- console.count
+- console.clear()

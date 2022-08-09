@@ -554,18 +554,18 @@
 
 // function countLanguage() {
 //     let newArr = []
-//     for (let i = 0; i < countries.length; i++) {
+//     for(let i = 0; i < countries.length; i++) {
 //         let accessLanguages = countries[i].languages
 //         for(let j = 0; j < accessLanguages.length; j++) {
-//             newArr.push(accessLanguages[j])      
+//             newArr.push(accessLanguages[j])
 //         }
 //     }
-//     let rs = []
+//     let rs = [] 
 //     for(let i = 0; i < newArr.length; i++) {
 //         var found = rs.find(item => item.languages == newArr[i])
 //         if(found) {
 //             found.count += 1
-//         } else {
+//         } else if(!found) {
 //             found = {}
 //             found.languages = newArr[i]
 //             found.count = 1
@@ -576,3 +576,40 @@
 // }
 
 // countLanguage(countries)
+
+// =================================================================================================
+// EX3: Use countries_data.js file create a function which create the ten most populated countries
+// =================================================================================================
+
+// import countries from './countries.js'
+
+// function mostPopulation() {
+//     let newArr = []
+//     let newArr2 = []
+//     let newArr3 = []
+//     for(let i = 0; i < countries.length; i++) {
+//         newArr.push(countries[i].population)
+//         newArr.sort((a, b) => {
+//             return b - a
+//         })
+//     }
+//     for(let i = 0; i < newArr.length; i++) {
+//         if(i < 10) {
+//             newArr2.push(newArr[i])
+//         }
+//     }
+//     console.log(newArr2);
+//     let rs = []
+//     for(let i = 0; i < newArr2.length; i++) {
+//         var found = rs.find(item => item.population == newArr[i])
+//         if(found) {
+//             found.population += 1
+//         } else {
+//             found = {}
+//             found.population = newArr[i]
+//             rs.push(found)
+//         }
+//     }
+//     console.log(rs);
+// }
+// mostPopulation(countries)
