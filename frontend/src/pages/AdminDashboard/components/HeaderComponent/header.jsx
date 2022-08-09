@@ -2,6 +2,7 @@ import React from 'react'
 import Title from 'antd/lib/typography/Title';
 import {UserOutlined} from '@ant-design/icons';
 import {Layout,Avatar } from 'antd';
+import AuthService from '../../../../services/auth.services';
 const { Header } = Layout;
 export default function HeaderComponent() {
   return (
@@ -14,8 +15,9 @@ export default function HeaderComponent() {
         <Title 
             className='brand'
             level={3}>ECONOMY
-            <Avatar className='avatar' icon={<UserOutlined />} />
+            <Avatar  className='avatar' icon={<UserOutlined />} />
         </Title>
+        
     </Header>
   )
 }

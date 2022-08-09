@@ -8,9 +8,7 @@ const {
   exports.addProduct = async (params) => {
     const { error } = addProduct(params);
     if (error) throw { message: error.details[0].message, statusCode: 400 };
-  
     const { title, image, description, price, quantity, cat_id } = params;
-  
     return new Promise((resolve, reject) => {
       db.query(
         'INSERT INTO products (id, title, image,description,price,quantity,cat_id) VALUES (?,?,?,?,?,?,?)',
@@ -37,7 +35,7 @@ const {
       );
     });
   };
-  
+
 module.exports.updateProduct = async (req,res) => {
   const { productId } = req.params;
   const {  title, image, description,price,quantity,cat_id } =  req.body.product;;

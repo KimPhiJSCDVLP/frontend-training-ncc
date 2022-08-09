@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Footer() {
+  if (window.location.pathname === '/admin') return null;
   return (
 <footer className="footer-home">
   <div className="container">

@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import Modal from '../Modal/modal';
 import NavbarMobile from '../NavbarMobile/navbarmobile';
 export default function Header(props) {
@@ -27,6 +28,7 @@ export default function Header(props) {
   const handleOpen = () => {
     setOpen(true);
   };
+  if (window.location.pathname === '/admin') return null;
   return (
     <header>
       <div className="navbar">
@@ -36,7 +38,6 @@ export default function Header(props) {
               width={142}
               height={34}
               alt=""
-              srcSet=""
             />
         </div>
         <div className="collapse">

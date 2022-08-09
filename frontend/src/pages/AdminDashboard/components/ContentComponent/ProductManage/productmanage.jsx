@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table , Space, Popconfirm,Button, Input } from 'antd'
+import { Table , Space, Popconfirm,Button, Input, notification ,Form} from 'antd'
 import Title from 'antd/lib/typography/Title';
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { useState ,useEffect, useRef } from 'react';
@@ -9,162 +9,175 @@ import EditProduct from './editproduct';
 import AddProduct from './addproduct';
 import axios from 'axios';
 export default function ProductManage() {
-
+    const API = 'http://localhost:5000/api/v1/products/'
       //search
-      const [searchText, setSearchText] = useState('');
-      const [searchedColumn, setSearchedColumn] = useState('');
-      const searchInput = useRef(null);
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [curentDataEdit, setCurentDataEdit] = useState(null);
+    const [isModalAddVisible, setIsModalAddVisible] = useState(false);
+    const [products, setProducts] = useState([]);
+    const searchInput = useRef(null);
 
-      const handleSearch = (selectedKeys, confirm, dataIndex) => {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-      };
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+      confirm();
+      setSearchText(selectedKeys[0]);
+      setSearchedColumn(dataIndex);
+    };
     
-      const handleReset = (clearFilters) => {
-        clearFilters();
-        setSearchText('');
-      };
-      const getColumnSearchProps = (dataIndex) => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-          <div
+    const handleReset = (clearFilters) => {
+      clearFilters();
+      setSearchText('');
+    };
+    const getColumnSearchProps = (dataIndex) => ({
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        <div
+          style={{
+            padding: 8,
+          }}
+        >
+          <Input
+            ref={searchInput}
+            placeholder={`Search ${dataIndex}`}
+            value={selectedKeys[0]}
+            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
             style={{
-              padding: 8,
-            }}
-          >
-            <Input
-              ref={searchInput}
-              placeholder={`Search ${dataIndex}`}
-              value={selectedKeys[0]}
-              onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-              onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              style={{
-                marginBottom: 8,
-                display: 'block',
-              }}
-            />
-            <Space>
-              <Button
-                type="primary"
-                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
-                size="small"
-                style={{
-                  width: 90,
-                }}
-              >
-                Search
-              </Button>
-              <Button
-                onClick={() => clearFilters && handleReset(clearFilters)}
-                size="small"
-                style={{
-                  width: 90,
-                }}
-              >
-                Reset
-              </Button>
-              <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                  confirm({
-                    closeDropdown: false,
-                  });
-                  setSearchText(selectedKeys[0]);
-                  setSearchedColumn(dataIndex);
-                }}
-              >
-                Filter
-              </Button>
-            </Space>
-          </div>
-        ),
-        filterIcon: (filtered) => (
-          <SearchOutlined
-            style={{
-              color: filtered ? '#1890ff' : undefined,
+              marginBottom: 8,
+              display: 'block',
             }}
           />
-        ),
-        onFilter: (value, record) =>
-          record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-        onFilterDropdownVisibleChange: (visible) => {
-          if (visible) {
-            setTimeout(() => searchInput.current?.select(), 100);
-          }
-        },
-        render: (text) =>
-          searchedColumn === dataIndex ? (
-            <Highlighter
-              highlightStyle={{
-                backgroundColor: '#ffc069',
-                padding: 0,
+          <Space>
+            <Button
+              type="primary"
+              onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+              icon={<SearchOutlined />}
+              size="small"
+              style={{
+                width: 90,
               }}
-              searchWords={[searchText]}
-              autoEscape
-              textToHighlight={text ? text.toString() : ''}
-            />
-          ) : (
-            text
-          ),
+            >
+              Search
+            </Button>
+            <Button
+              onClick={() => clearFilters && handleReset(clearFilters)}
+              size="small"
+              style={{
+                width: 90,
+              }}
+            >
+              Reset
+            </Button>
+            <Button
+              type="link"
+              size="small"
+              onClick={() => {
+                confirm({
+                  closeDropdown: false,
+                });
+                setSearchText(selectedKeys[0]);
+                setSearchedColumn(dataIndex);
+              }}
+            >
+              Filter
+            </Button>
+          </Space>
+        </div>
+      ),
+      filterIcon: (filtered) => (
+        <SearchOutlined
+          style={{
+            color: filtered ? '#1890ff' : undefined,
+          }}
+        />
+      ),
+      onFilter: (value, record) =>
+        record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      onFilterDropdownVisibleChange: (visible) => {
+        if (visible) {
+          setTimeout(() => searchInput.current?.select(), 100);
+        }
+      },
+      render: (text) =>
+        searchedColumn === dataIndex ? (
+          <Highlighter
+            highlightStyle={{
+              backgroundColor: '#ffc069',
+              padding: 0,
+            }}
+            searchWords={[searchText]}
+            autoEscape
+            textToHighlight={text ? text.toString() : ''}
+          />
+        ) : (
+          text
+        ),
+    });
+    //Column in table
+    const columns = [
+      {
+        title: 'Title',
+        dataIndex: 'title',
+        sorter: (a, b) => a.title.length - b.title.length,
+        key : 'title',
+        width: '30%',
+        ...getColumnSearchProps('title'),
+      },
+      {
+        title: 'Image',
+        dataIndex: 'image',
+        render: (text, record) => {
+          return (
+            <img src={record.image} width = {200} height = {100}/>
+            )
+        }
+      },
+      {
+        title: 'Price',
+        dataIndex: 'price',
+        sorter: (a, b) => a.price - b.price,
+      },
+      {
+        title: 'quantity',
+        dataIndex: 'quantity',
+        sorter: (a, b) => a.quantity - b.quantity,
+      },
+      {
+        title: 'Description',
+        dataIndex: 'description',
+        sorter: (a, b) => a.description.length - b.description.length,
+      },
+      {
+        title: 'category',
+        dataIndex: 'category',
+      },
+      {
+        title: 'Action',
+        key: 'action',
+        render: (_, record) => (
+          <Space size="middle">
+            <a><EditOutlined onClick={() => {showModal(record.id)}} /></a>
+            <Popconfirm title={`"Sure to delete product" ${record.id}`} onConfirm={() => {handleDelete(record.id)}}>
+                <a><DeleteOutlined  style={{color: 'red' }} /></a>
+            </Popconfirm>
+          </Space>
+        ),
+      },
+    ];
+
+    // Notification Alert
+    const notifySuccess = (type) => {
+      notification[type]({
+        message: 'Thành công',
+        description:
+          'Xử lí sản phẩm thành công',
       });
-      //Column in table
-      const columns = [
-        {
-          title: 'Title',
-          dataIndex: 'title',
-          sorter: (a, b) => a.title.length - b.title.length,
-          key : 'title',
-          width: '30%',
-          ...getColumnSearchProps('title'),
-        },
-        {
-          title: 'Image',
-          dataIndex: 'image',
-          render: (text, record) => {
-            return (
-              <img src={record.image} width = {200} height = {100}/>
-              )
-          }
-        },
-        {
-          title: 'Price',
-          dataIndex: 'price',
-          sorter: (a, b) => a.price - b.price,
-        },
-        {
-          title: 'quantity',
-          dataIndex: 'quantity',
-          sorter: (a, b) => a.quantity - b.quantity,
-        },
-        {
-          title: 'Description',
-          dataIndex: 'description',
-          sorter: (a, b) => a.description.length - b.description.length,
-        },
-        {
-          title: 'category',
-          dataIndex: 'category',
-        },
-        {
-          title: 'Action',
-          key: 'action',
-          render: (_, record) => (
-            <Space size="middle">
-              <a><EditOutlined onClick={() => {showModal(record.id)}} /></a>
-              <Popconfirm title={`"Sure to delete product" ${record.id}`} onConfirm={() => {handleDelete(record.id)}}>
-                  <a><DeleteOutlined  style={{color: 'red' }} /></a>
-              </Popconfirm>
-            </Space>
-          ),
-        },
-      ];
-    //call API
-    const [products, setProducts] = useState([]);
+    };
+    
+    //GET ALL PRODUCT
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/v1/products/all`)
+        .get(API + "all")
         .then((res) => {
           const products = res.data;
           setProducts(products);
@@ -174,11 +187,13 @@ export default function ProductManage() {
 
     const handleDelete = (id) => {
         axios
-        .delete(`http://localhost:5000/api/v1/products/${id}`)
+        .delete(API + id)
         .then((res) => {
           const newData = products.filter((item) => item.id !== id);
+          notifySuccess("success")
           setProducts(newData);
           console.log(res);
+          
         })
         .catch((error) => console.log(error));
     }
@@ -188,10 +203,6 @@ export default function ProductManage() {
     };
 
     //Modal edit
-    const [isModalVisible, setIsModalVisible] = useState(false);
-     
-    const [curentDataEdit, setCurentDataEdit] = useState(null);
-
     const showModal = (id) => {
       const currentRow = products.find(item => item.id === id);
       console.log(currentRow);
@@ -217,7 +228,7 @@ export default function ProductManage() {
           cat_id : "2"
         }
         axios
-          .put(`http://localhost:5000/api/v1/products/update/${curentDataEdit.id}`, newEntry)
+          .put(API +"update/" +curentDataEdit.id, newEntry)
           .then((res) => {
             console.log(res);
             let recordPrev = [...products].filter(item => item.id !== curentDataEdit.id)
@@ -229,19 +240,17 @@ export default function ProductManage() {
           .catch((error) => console.log(error));
         
     };  
-
     const handleCancel = () => {
         setIsModalVisible(false);
     };
-    //endModal
-    //Modal add product
-    const [isModalAddVisible, setIsModalAddVisible] = useState(false);
 
+    //Modal add product
     const showModalAdd = () => {
         setIsModalAddVisible(true);
     };
     const handleCancelAdd = () => {
         setIsModalAddVisible(false);
+   
     };
     const addProductHandle = (e) => {
        const newProduct = {
@@ -253,16 +262,19 @@ export default function ProductManage() {
         quantity : "3" ,
         cat_id : "1"
       };
-      console.log(newProduct);
-        axios
-          .post(`http://localhost:5000/api/v1/products/add`, newProduct)
+      axios
+          .post(API + "add", newProduct)
           .then((res) => {
             console.log(res);
+            setIsModalAddVisible(false)
+            notifySuccess('success')
             setProducts(prev => {
               return [...prev, newProduct]
             })
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error) 
+          });
     };
     return(
         <>

@@ -7,7 +7,7 @@ export default function EditProduct({curentDataEdit,visible,editProductHandle,on
     useEffect(() => {
         form.setFieldsValue(curentDataEdit)
        }, [form, curentDataEdit])
-       console.log(curentDataEdit);
+    //    console.log(curentDataEdit);
     return (
         < Modal width={1000} visible={visible} footer = {null} onCancel={onCancel}>
         <Title level={3}>Edit Product</Title>

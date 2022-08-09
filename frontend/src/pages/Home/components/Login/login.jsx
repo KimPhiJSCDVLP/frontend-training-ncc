@@ -1,34 +1,38 @@
 import React from 'react'
-import axios from 'axios'
+import AuthService from '../../../../services/auth.services'
 import {useState} from 'react'
 export default function Login() {
    const [email, setEmail] = useState(' ')
    const [password, setPassword] = useState(' ')
-
    const handleEmail = (e) => {
     setEmail(e.target.value)
    }
    const handlePassword = (e) => {
     setPassword(e.target.value)
    }
-    const handleAPI = () => {
-        console.log(email,password);
-        axios.post('http://localhost:5000/api/v1/auth/login',{
-            email : email,
-            password : password
-        }).then(result => {
-            console.log(result);
-            alert ("Success")
-        })
-        .catch(error =>{
-            console.log(error);
-            alert("Thất bại")
-        })
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        let token
+        try{
+           token = await AuthService.login(email,password).then(
+            (res) => {
+              return(
+                window.location.href = "/admin"
+              )   
+            },
+            (error) => {
+              console.log(error);
+              alert('loi')
+            }
+          );
+        }
+        catch (err) {
+          console.log(err);
+        }
     }
-    // getLogin()
   return (
     <div className="modal-body">
-            <form action="#" className="signin-form">
+            <form onSubmit={handleLogin} className="signin-form">
               <div className="mb-3">
                 <label htmlFor="" className="form-label">
                   Email
@@ -50,7 +54,7 @@ export default function Login() {
                   </label>
                 </div>
               </div>
-              <button className="btn btn-danger w-100" onClick={handleAPI}>
+              <button className="btn btn-danger w-100" >
                 Signin
               </button>
             </form>
