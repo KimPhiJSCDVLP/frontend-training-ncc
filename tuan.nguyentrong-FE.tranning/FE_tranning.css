@@ -1,7 +1,41 @@
 body{
     margin: 0;
     padding: 0;
-    height: 8000px;
+}
+
+@media only screen and (max-width: 770px){
+    .subnavbar .search-form{ width: 100%; }
+    .sidebar-right{
+        height: auto!important;
+        position: unset!important;
+    }
+    .main-container{
+        grid-template-columns: 1.2fr 3fr!important;
+        grid-template-areas: "sidebar main"!important;
+    }
+    .main-content{
+        grid-template-columns: 1fr!important;
+        grid-template-rows: auto auto 5fr!important;
+        grid-template-areas: "intro"
+                             "table-content"
+                             "main-content"!important;
+    }
+
+}
+@media only screen and (max-width: 576px){
+    .sidebar-left, .sidebar-right, .main, .main-content{
+        overflow: auto;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+        height: auto!important;
+        position: unset!important;
+    }
+    .main-container{
+        grid-template-columns: 5fr!important;
+        grid-template-rows: auto 5fr!important;
+        grid-template-areas: "sidebar"
+                             "main-content"!important;
+    }
 }
 
 /* Header */
@@ -44,16 +78,15 @@ body{
 
 /* Subnavbar */
 .subnavbar{
-    background-color: rgba(255, 255, 255, 0.685);
+    background-color: rgba(255,255,255,0.95);
     position: sticky;
     top: 0;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%);
-}
-@media (max-width: 767.98px){
-    .subnavbar .search-form{ width: 100%; }
+    z-index: 999;
 }
 .subnavbar .search-form{
     position: relative;
+    z-index: 999;
 }
 .subnavbar .search-form::after{
     position: absolute;
@@ -101,15 +134,51 @@ body{
     box-shadow: 0 0 0 3px #7952b34e;
 }
 .btn-sidebar-collapse:not(.collapsed) .bi-arrows-expand{
-    display: none;
-}
-.btn-sidebar-collapse:not(.collapsed) .bi-arrows-collapse{
     display: inline-block;
 }
-.btn-sidebar-collapse .bi-arrows-collapse{
+.btn-sidebar-collapse:not(.collapsed) .bi-arrows-collapse{
     display: none;
 }
+.btn-sidebar-collapse .bi-arrows-expand{
+    display: none;
+}
+
+/* Main */
+.main-container{
+    grid-template-columns: 1.3fr 5fr;
+    gap: 0.5rem;
+    grid-template-areas: "sidebar main";
+}
+.main-content{
+    grid-template-columns: 5fr 1.3fr;
+    grid-template-rows: auto 5fr;
+    grid-template-areas:    "intro table-content"
+                            "main-content table-content";
+    grid-area: main;
+}
+.main{
+    grid-area: main-content;
+}
+.sidebar-right{
+    grid-area: table-content;
+}
+.intro{
+    grid-area: intro;
+}
+
+/* Sidebar */
+.sidebar-left, .sidebar-right{
+    height: calc(100vh - 7rem);
+    overflow-y: auto;
+    position: sticky;
+    top: 5rem;
+}
+.sidebar-left{
+    padding: .2rem .1rem;
+    grid-area: sidebar;
+}
 .sidebar-collapse .btn{
+    margin-bottom: 0;
     position: relative;
     color: rgba(0,0,0,0.85);
     font-weight: 600;
@@ -126,7 +195,7 @@ body{
     border-top: 3px solid rgb(127 127 127);
     border-right: 3px solid rgb(127 127 127);
     border-radius: 2px;
-    transition: 0.3s;
+    transition: 0.5s;
     transform: rotate(135deg);
     top: 34%;
     left: 10px;
@@ -134,8 +203,47 @@ body{
 .sidebar-collapse .btn.collapsed::before{
     transform: rotate(45deg);
 }
-.sidebar-collapse .child-collapse a{
+.sidebar-collapse .child-collapse{
+    padding-left: 1.5rem;
+}
+.sidebar-collapse .child-collapse a, .sidebar-collapse .btn-migration{
+    padding: 5px 8px;
+    border-radius: .25rem;
+    text-decoration: none;
+    color: rgba(0,0,0,0.85);
+}
+.sidebar-collapse .btn-migration{
+    margin-left: 1.3rem;
+    font-weight: 600;
+}
+.sidebar-collapse .child-collapse a:hover,.sidebar-collapse .btn-migration:hover{
+    background-color: rgba(121,82,179,0.1);
+    color: #000;
+}
+.sidebar-collapse .child-collapse a.active{
+    font-weight: 600;
+}
+.sidebar-right nav ul a{
+    text-decoration: none;
+    color: rgba(0,0,0,0.85);
+}
+.sidebar-right nav ul a:hover{
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer-content{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+}
+.footer-content a{
     text-decoration: none;
     color: #6c757d;
 }
-
+.footer-content a:hover{
+    text-decoration: underline;
+    color: #0d6efd;
+}
+.footer-content .bs-info a.footer-bs-logo:hover{
+    text-decoration: none;
+}
