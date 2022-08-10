@@ -1,0 +1,36 @@
+.header{
+    background-image: url('./images/globe-2.jpg');
+    background-size: cover;
+    height: 500px;
+}
+.header-title{
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+.bg-alpha{
+    background-color: rgba(11, 11, 11, 0.3);
+    height: 100%;
+}
+.searchInput{
+    width: 50%;
+}
+.country{
+    background-image: url('./images/map_image.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 160px;
+}
+.nameCountries{
+    text-align: center;
+   
+
+ 
+}
+.countries{
+    background-color: bisque;
+    min-height: 500px;
+    
+}
+b{
+    color: red;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+    .progress{
+        width: 100%;
+    }
+    #population{
+        display: none
+    }
+    #population.active{
+        display: block;
+    }
+    #languages{
+        display: none;
+    }
+    #languages.active{
+        display: block;
+    }
+</style>
+<body>
+    <div class="container ">
+        <div class="row d-block text-center">
+            <h1 class="text-center">World Countries Data</h1>
+            <p>Currentlty, we have 250 countries</p>
+        </div>
+        <div class="row text-center justify-content-center mt-5">
+            <button class="btn btn-warning" id="btnPopulation">Population</button>
+            <button class="btn btn-warning ml-3" id = "btnLanguages">Languages</button>
+        </div>
+        <!-- Population -->
+        <div id="population" class="active">
+            <div class="row justify-content-center">
+                <div class="col-md-2" id="nameCountries">
+                    <div class="row">World</div>
+                </div>
+                <div class="col-md-8" id="progessCountries">
+                    <div class="row">
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-warning" style="width : 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-1" id = "valueCountries">
+                    <div class="row" id = "worldPopulation" ></div>
+                </div>
+            </div>
+        </div>
+        <!-- Languages -->
+        <div id="languages">
+            <div class="row justify-content-center">
+                <div class="col-md-2" id="nameCountriesLang">
+                    
+                </div>
+                <div class="col-md-8" id="progessCountriesLang">
+                    
+                </div>
+                <div class="col-md-2 mt-1" id = "numberLang">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

@@ -31,8 +31,23 @@ const chec6 = 4 < 3 || 10 < 5         // false || false -> false
  let i = 1;
  console.log(++i);//2
  console.log(--i);//0
+
+ //Ternary Operator
+
+ let isRaining2 = true
+ isRaining
+ ? console.log('You need a rain coat.')
+ : console.log('No need for a rain coat.')
+ isRaining2 = false
+
+ isRaining2
+ ? console.log('You need a rain coat.')
+ : console.log('No need for a rain coat.')
 //Date 
  const now = new Date();
  console.log(now);
  console.log(now.getFullYear);
  console.log(now.getMonth);
+// Getting Times :
+ const nowTime = new Date() //
+ console.log(nowTime.getTime())

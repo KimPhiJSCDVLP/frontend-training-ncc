@@ -1,0 +1,22 @@
+.title{
+    padding: 20px 0px;
+    background-color: antiquewhite;
+    width: 100%;
+    text-align: left;
+}
+.courses{
+    width: 100%;
+}
+.course-title{
+    width: 90%;
+    padding: 60px 40px;
+    background-color: rgba(7, 7, 7, 0.337);
+    text-align: center;
+    border-radius: 10px;
+}
+.course-title:hover{
+    background-color: bisque;
+}
+.tech-title{
+    font-size: 50px;
+}
