@@ -1,5 +1,6 @@
 // const companies = new Set()
 
+
 // const languages = [
 //     'English',
 //     'Finnish',
@@ -182,3 +183,83 @@
 
 // const c = new Set([...a,...b])
 // console.log(c);
+
+// ===============================================================================
+// ===============================================================================
+//                                      LV3
+// ===============================================================================
+// ===============================================================================
+
+// ===============================================================================
+// EX1: How many languages are there in the countries object file
+// ===============================================================================
+
+// import countries from "./countriesDay10.js";
+
+// function countLanguages() {
+//     let arr = []
+//     let rs = []
+//     let result = []
+//     countries.map(country => {
+//         let accessLanguages = country.languages
+//         accessLanguages.map((language) => {
+//             var found = rs.find(lang => lang.languages == language)
+//             if(found) {
+//                 found.count += 1
+//             } else {
+//                 found = {}
+//                 found.languages = language
+//                 found.count = 1
+//                 rs.push(found)
+//             }
+//         })
+//     })
+//     rs.map(lang => {
+//         result.push(lang.languages)
+//     })
+//     console.log(result);
+//     console.log(result.length);
+// }
+// countLanguages()
+
+
+// ===============================================================================
+// EX2: Use the countries data to find the 10 most spoken languages
+// ===============================================================================
+
+// import countries from "./countriesDay10.js";
+
+// function countLanguages() {
+//     let arr = []
+//     countries.map((country) => {
+//         let accessLanguage = country.languages
+//         accessLanguage.map((language) => {
+//             arr.push(language)
+//         })
+//     })
+//     let rs = []
+//     arr.map((language) => {
+//         var found = rs.find((lang) => lang.languages == language)
+//         if(found) {
+//             found.count += 1
+//         } else {
+//             found = {}
+//             found.languages = language
+//             found.count = 1
+//             rs.push(found)
+//         }
+//     })
+//     rs.sort((a, b) => {
+//         return b.count - a.count
+//     })
+//     let rsSlice = rs.slice(0, 10)
+//     let obj = {}
+//     let newObj = {}
+//     rsSlice.map((e) => {
+//         let a = e.languages
+//         obj[a] = e.count
+//     })
+
+//     console.log(obj);
+// }
+// countLanguages()

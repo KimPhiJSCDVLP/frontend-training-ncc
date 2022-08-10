@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-wrapper {
+    background: url(https://github.com/nccasia/ncc-javascript/blob/main/30-Days-Of-JavaScript/26_Day_World_countries_data_visualization_2/26_day_starter/images/globe-2.jpg?raw=true);
+    background-size: cover;
+}
+
+.header {
+    background-color: rgba(27, 66, 99, 0.484);
+    position: relative;
+}
+
+.header-title {
+    text-align: center;
+    color: white;
+}
+
+.header-title h1 {
+    font-size: 5rem;
+    padding-top: 150px;
+}
+
+.header-title h3 {
+    font-size: 1.5rem;
+}
+
+.header-group-btn {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.starting-word, .search-word, .sortByAlphabet {
+    background-color: rgb(137, 82, 215);
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+}
+
+.starting-word:hover, .search-word:hover, .sortByAlphabet:hover {
+    background-color: rgb(109, 65, 170);
+    transition: .3s;
+}
+
+.search-bar {
+    text-align: center;
+    padding: 150px 0;
+}
+
+.search-bar input {
+    width: 50vw;
+    height: 6vh;
+    border-radius: 25px;
+    outline: none;
+    border: 2px solid rgb(26, 83, 175);
+    padding-left: 20px;
+}
+
+.search-bar input::placeholder {
+    text-align: center;
+}
+
+.search-bar i {
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1.3rem;
+}
+
+.content {
+    width: 100%;
+    background-color: rgb(253, 253, 222);
+}
+
+.row {
+    padding: 0;
+    display: flex;
+}
+
+.item {
+    background: url(https://github.com/nccasia/ncc-javascript/blob/main/30-Days-Of-JavaScript/26_Day_World_countries_data_visualization_2/26_day_starter/images/map_image.jpg?raw=true);
+    background-size: cover;
+    width: 100px;
+    height: 160px;
+    font-weight: bold;
+    color: rgb(61, 28, 107);
+    text-align: center;
+    padding-top: 60px;
+    margin-top: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.201);
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.107);
+}

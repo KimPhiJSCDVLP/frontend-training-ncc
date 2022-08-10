@@ -60,10 +60,6 @@ html {
     padding-bottom: 15px;
 }
 
-.languages-content-title {
-    display: none;
-}
-
 .content-container {
     padding-bottom: 3px;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.098);
@@ -79,19 +75,17 @@ html {
     display: flex;
 }
 
-.country {
-    margin-right: 15px;
-}
 
 .population-quantity {
     margin-top: 25px;
 }
 
-.country {
+.country, .language {
     margin-top: 25px;
+    margin-right: 5px;
 }
 
-.chart {
+.chart, .chart-lang {
     margin-top: 19.25px;
     width: 5px;
     height: 25px;
@@ -105,4 +99,37 @@ html {
 .country-item {
     display: flex;
     justify-content: space-between;
+}
+
+.countries-content-title {
+    display: block;
+}
+
+.countries-content-title.active {
+    display: none;
+}
+
+.languages-content-title {
+    display: none;
+}
+
+.languages-content-title.active {
+    display: block;
+}
+
+.country-item.active {
+    display: none;
+}
+
+.language-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.languages-item-wrapper {
+    display: none;
+}
+
+.languages-item-wrapper.active {
+    display: block;
 }
