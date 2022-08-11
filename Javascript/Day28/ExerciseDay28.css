@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 36px 0;
+}
+
+.group-input {
+    display: flex;
+    justify-content: space-between;
+    gap: 17px;
+}
+
+.first {
+    margin-left: 15px;
+}
+
+.last {
+    margin-right: 15px;
+}
+
+.group-input input {
+    height: 50px;
+    border: 2px solid rgb(227, 198, 189);
+    outline: none;
+}
+
+.group-input button {
+    border: none;
+    background-color: rgb(238, 202, 191);
+    color: #fff;
+    border-radius: 5px;
+}
+
+.warn {
+    text-align: center;
+    margin-top: 5px;
+    padding: 33px 0;
+    font-weight: bold;
+    color: red;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.084);
+    display: none;
+}
+
+.warn.active {
+    display: block;
+}
+
+.list-items {
+    margin-top: 33px;
+}
+
+.list-item {
+    background-color: rgb(238, 202, 191);   
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-content {
+    display: flex;
+}
+
+.name-with-date {
+    margin: 10px;
+    width: 232px;
+}
+
+.name {
+    font-size: 1.3rem;
+}
+
+.date {
+    color: rgba(0, 0, 0, 0.402);
+}
+
+.country {
+    margin: 20px 50px;
+    width: 66px;
+}
+
+.score {
+    margin: 20px 50px;
+    width: 66px;
+}
+
+.group-control {
+    display: flex;
+    gap: 20px;
+}
+
+.group-control div p {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding-left: 28%;
+    padding-top: 22%;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.group-control div p:hover {
+    background-color: rgb(232, 249, 214);
+    transition: .3s;
+}
