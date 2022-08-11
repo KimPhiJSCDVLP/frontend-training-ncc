@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthService from '../../../../services/auth.services'
 import {useState} from 'react'
+
 export default function Login() {
    const [email, setEmail] = useState(' ')
    const [password, setPassword] = useState(' ')
@@ -12,23 +13,16 @@ export default function Login() {
    }
     const handleLogin = async (e) => {
         e.preventDefault();
-        let token
         try{
-           token = await AuthService.login(email,password).then(
-            (res) => {
-              return(
-                window.location.href = "/admin"
-              )   
-            },
-            (error) => {
-              console.log(error);
-              alert('loi')
-            }
-          );
+         await AuthService.login(email,password);
+         // redirect
+         console.log('log');
         }
-        catch (err) {
-          console.log(err);
+        catch(e){
+          console.log(e,'e');
         }
+   
+      
     }
   return (
     <div className="modal-body">

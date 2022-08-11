@@ -1,4 +1,5 @@
 import axios from "axios";
+import {message} from 'antd'
 const API_URL = "http://localhost:5000/api/v1/auth/";
 const register = (fullName, email, password) => {
   return axios.post(API_URL + "register", {
@@ -13,17 +14,21 @@ const register = (fullName, email, password) => {
   })
 };
 
-const login = (email, password) => {
-  return axios
-    .post(API_URL + "login", {
+
+const login = async (email, password) => {
+  try{
+    axios.get('/sanctum/csrf-cookie');
+    const {data} = await axios.post("/api/admin/login", {
       email,
       password,
     })
-    .then((response) => {
-      localStorage.setItem("user", JSON.stringify(response.data.token));
-      return response.data;
-    });
+    localStorage.setItem("access_token", data.access_token);
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
+  } catch (e) {
+        throw e;
+      }
 };
+
 
 const logout = () => {
   localStorage.removeItem("user");

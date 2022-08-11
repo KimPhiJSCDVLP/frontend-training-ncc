@@ -12,7 +12,8 @@ import Category from './pages/Category';
 import Cart from './pages/Cart';
 import CheckoutComponent from './pages/Cart/components/CheckoutComponent/checkoutcomponent';
 import AdminDashBoard from './pages/AdminDashboard';
-import Login from './pages/Home/components/Login/login';
+import ProductManage from './pages/AdminDashboard/components/ContentComponent/ProductManage/productmanage';
+import CategoryManage from './pages/AdminDashboard/components/ContentComponent/CategoryManage/category';
 
 // function getToken() {
 //   const tokenString = sessionStorage.getItem("user");
@@ -31,15 +32,15 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route>
-              <Route  path="/"  index element={<Home />} />
-            </Route>
+            <Route  path="/"  index element={<Home />} />
             <Route  path="/product"  index element={<Product />} />
             <Route  path="/product:id"  index element={<Product />} />
             <Route  path="/category"  index element={<Category />} />
             <Route  path="/cart"  index element={<Cart />} />
             <Route  path="/checkout"  index element={<CheckoutComponent/>} />
             <Route  path="/admin"  index element={<AdminDashBoard/>} />
+            <Route  path="/admin-product"  index element={<ProductManage/>} />
+            <Route  path="/admin-category"  index element={<CategoryManage/>} />
         </Routes>
       </BrowserRouter>
     </>

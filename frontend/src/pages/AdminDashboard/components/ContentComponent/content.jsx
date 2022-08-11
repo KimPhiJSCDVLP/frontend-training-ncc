@@ -1,6 +1,8 @@
 import React from 'react'
 import { Breadcrumb, Layout} from 'antd';
 import ProductManage from './ProductManage/productmanage';
+import Category from './CategoryManage/category';
+import {Route , Router} from 'react-router-dom'
 const { Content} = Layout;
 export default function ContentComponent() {
   return (
@@ -24,7 +26,7 @@ export default function ContentComponent() {
             minHeight: 360,
             }}
         >
-            <ProductManage/>
+            <ProductManage/>    
         </div>
     </Content>
   )
