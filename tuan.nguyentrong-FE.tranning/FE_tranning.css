@@ -2,8 +2,10 @@ body{
     margin: 0;
     padding: 0;
 }
-
-@media only screen and (max-width: 770px){
+p{
+    margin: 0;
+}
+@media only screen and (max-width: 992px){
     .sidebar-right{
         height: auto!important;
         position: unset!important;
@@ -18,22 +20,27 @@ body{
                              "table-content"
                              "main-content"!important;
     }
+    .bs-info{
+        padding: 0!important;
+    }
     .footer-content{
         grid-template-columns: 2fr 2fr!important;
         grid-template-rows: auto auto auto!important;
         grid-template-areas: "info info"!important;
         gap: 2rem;
     }
-    .bs-info{
-        padding: 0!important;
-    }
-
 }
 @media only screen and (max-width: 576px){
     .subnavbar .search-form{ width: 100%; }
+    .sidebar-left{
+        margin: 0 -.75rem 1rem;
+        border-bottom: 1px solid #dee2e6;
+        padding: 1rem!important;
+        background-color: #f8f9fa;
+    }
     .sidebar-left, .sidebar-right, .main, .main-content{
         overflow-y: unset!important;
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
         height: auto!important;
         position: unset!important;
     }
@@ -112,15 +119,15 @@ body{
     border-color: rgba(107, 107, 107, 0.466);
     box-shadow: 0 0 0 3px #7952b34e;
 }
-.subnavbar .btn-version-toggle{
+.subnavbar .btn-version-toggle, .intro .btn-viewGithub{
     border-color: #ced4da;
 }
-.subnavbar .btn-version-toggle:hover{
+.subnavbar .btn-version-toggle:hover, .intro .btn-viewGithub:hover{
     border-color: #7952b3;
     background-color: #fff;
-    color: #7952b3;
+    color: #7952b3!important;
 }
-.subnavbar .btn-version-toggle:focus{
+.subnavbar .btn-version-toggle:focus, .intro .btn-viewGithub:focus{
     box-shadow: 0 0 0 3px #7952b34e;
 }
 .subnavbar .dropdown-item.current{
@@ -149,12 +156,12 @@ body{
 
 /* Main */
 .main-container{
-    grid-template-columns: 1.3fr 5fr;
+    grid-template-columns: 1.2fr 5fr;
     gap: 0.5rem;
     grid-template-areas: "sidebar main";
 }
 .main-content{
-    grid-template-columns: 5fr 1.3fr;
+    grid-template-columns: 5fr 1.6fr;
     grid-template-rows: auto 5fr;
     grid-template-areas:    "intro table-content"
                             "main-content table-content";
@@ -168,6 +175,15 @@ body{
 }
 .intro{
     grid-area: intro;
+}
+.intro h1{
+    font-size: 3rem;
+}
+.main-text{
+    position: relative;
+}
+.main-text .main-text-item{
+    padding-top: 4rem;
 }
 
 /* Sidebar */
@@ -239,6 +255,7 @@ body{
 .footer-content{
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "info";
 }
 .bs-info{
     padding-right: 3rem;
