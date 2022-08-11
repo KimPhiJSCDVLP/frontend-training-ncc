@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    html,
+    body{
+        width: 100%;
+        height: 100%;
+    }
+    #container{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 100px;
+    }
+    .text{
+        position: absolute;
+        color: white;
+        animation: rotate 4s linear infinite;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .text span{
+        top: -100px;
+        position: absolute;
+        text-transform: uppercase;
+        display: inline-block;
+        transform-origin: 0px 100px;
+    }
+
+    @keyframes rotate {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+    
+</style>
+<body>
+    <div id="container">
+        <h2 class="text"> Circle-Text-Effect- </h2>
+    </div>
+</body>
+<script>
+    const text = document.querySelector(".text");
+    text.innerHTML = text.textContent.replace(/\S/g,
+    "<span>$&</span>")
+
+    const elements = document.querySelectorAll("span");
+
+    for(let i = 0; i< elements.length; i++){
+        elements[i].style.transform = "rotate("+i*19+"deg)"
+    }
+
+    document.addEventListener("mousedown", function(e){
+        text.style.left = e.offsetX + "px";
+        text.style.top = e.offsetY + "px";
+    })
+
+
+</script>
+</html>
