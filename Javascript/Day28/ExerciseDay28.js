@@ -22,14 +22,13 @@ function renderData() {
                     <div class="score">${item.score}</div>
                 </div>
                 <div class="group-control">
-
                     <div class="delete">
                         <p onclick="deleteButton(${index})" class="btn-del"><i class="bi bi-trash"></i></p>
                     </div>
-                    <div onclick="addScore(${item.score})">
+                    <div onclick="addScore(${index})">
                         <p>+5</p>
                     </div>
-                    <div onclick="minScore(${item.score})">
+                    <div onclick="minScore(${index})">
                         <p>-5</p>
                     </div>
                 </div>
@@ -50,15 +49,23 @@ function deleteButton(index) {
     renderData()
 }
 
-const addScore = (score) => {
-    score = score + 5
-    console.log(score);
+const addScore = (index) => {
+    lists.filter((item, id) => {
+        if(id == index) {
+            item.score = parseInt(item.score)
+            item.score = item.score + 5
+        }
+    })
     renderData()
 }
 
-const minScore = (score) => {
-    score = score - 5
-    console.log(score);
+const minScore = (index) => {
+    lists.filter((item, id) => {
+        if(id == index) {
+            item.score = parseInt(item.score)
+            item.score = item.score - 5
+        }
+    })
     renderData()
 }
 

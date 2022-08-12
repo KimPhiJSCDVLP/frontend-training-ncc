@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./ExerciseDay30.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Validating Web Forms</h1>
+        <form id="login-form">
+            <h3 class="f">First Name</h3>
+            <input onkeyup="handleFirstName()" id="first-name" type="username" placeholder="Enter your first name">
+            <div class="first-name-warn warn">First name must be alphanumeric and contain 3 - 16 characters</div>
+            <h3>Last Name</h3>
+            <input onkeyup="handleLastName()" id="last-name" type="username" placeholder="Enter your last name">
+            <div class="last-name-warn warn">Last name must be alphanumeric and contain 3 - 16 characters</div>
+            <h3>Email</h3>
+            <input onkeyup="handleEmail()" id="email" type="email" placeholder="Enter your email">
+            <div class="email-warn warn">Email must be a valid address, e.g. example@example.com</div>
+            <h3>Password</h3>
+            <input onkeyup="handlePassword()" id="password" type="password" placeholder="Enter your password">
+            <div class="password-warn warn">Password must be alphanumeric (@, _and - are also allowed) and between 6 -
+                20 characters</div>
+            <h3>Telephone</h3>
+            <input onkeyup="handlePhoneNumber()" id="phone" type="tel" placeholder="Enter your phone number">
+            <div class="phone-warn warn">Avalid telephone number (11 digits and 333-333-3334)</div>
+            <h3>Your Bio</h3>
+            <input onkeyup="handleUserBio()" id="user-bio" type="text" placeholder="Enter your bio">
+            <div class="bio-warn warn">Bio must contain only lowercase letters, underscores, hyphens and be 5-80
+                characters</div>
+            <input onkeyup="handleSubmit()" id="btn-submit" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+<script src="./ExerciseDay30.js"></script>
+
+</html>
