@@ -3,7 +3,9 @@ import { Table , Space, Popconfirm,Button, message ,Spin } from 'antd'
 import Title from 'antd/lib/typography/Title';
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { useState ,useEffect } from 'react';
-import axios from 'axios';
+import { useQuery ,useMutation } from '@apollo/client'
+import { getCategories} from '../../../../../graphql/querydata'
+import { DELETE_CATE, ADD_CATE ,UPDATE_CATE} from '../../../../../graphql/mutation';
 import AddCategory from './addcategory';
 import EditCategory from './editcategory';
 export default function CategoryManage() {
@@ -11,8 +13,11 @@ export default function CategoryManage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [curentDataEdit, setCurentDataEdit] = useState();
   const [isModalAddVisible, setIsModalAddVisible] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [deleteCat, { data, loading1, error }] = useMutation(DELETE_CATE);
+  const [addCate, { datacat, loadingcat, errorcat }] = useMutation(ADD_CATE);
+  const [updateCate, { dataupdate, loadingupdate, errorupdate }] = useMutation(UPDATE_CATE);
   const [loading, setLoading] = useState(false);
+  const { loading: loadingcate, error: errorcate, data: datacate } = useQuery(getCategories)
   const columns = [
     {
       title: 'STT',
@@ -23,25 +28,17 @@ export default function CategoryManage() {
       dataIndex: 'name',
     },
     {
-      title: 'Đường Dẫn',
-      dataIndex: 'slug',
+      title: 'image',
+      dataIndex: 'image',
+      render: (text, record) => {
+        return (
+          <img src={record.image} width = {50} height = {50}/>
+          )
+      }
     },
     {
       title: 'Mô Tả',
-      dataIndex: 'description',
-    },
-    {
-      title: "Ngày tạo",
-        render: (text, record, index) => {
-            return (
-                <span>
-                    {/* {moment(record.created_at).format(
-                        "DD/MM/YYYY, hh:mm"
-                    )} */}
-                    {record.created_at}
-                </span>
-            );
-                  }
+      dataIndex: 'des',
     },
     {
       title: 'Action',
@@ -57,19 +54,7 @@ export default function CategoryManage() {
     },
   ];
   // GET ALL CATEGORY
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      axios
-      .get(API)
-      .then((res) => {
-        const categories = res.data;
-        setCategories(categories.data);
-        setLoading(false);
-      })
-      .catch((error) => console.log(error));
-    },2000) 
-  }, []);
+  const categories =  datacate?.categories
   // EDIT CATEGORY
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -79,30 +64,19 @@ export default function CategoryManage() {
     setCurentDataEdit(categories.find(item => item.id === id))
   };
   const handleEditCategory = async (e) => {
-    try {
-      await axios.put(API + curentDataEdit.id, e);
-      message.success("Sữa danh mục thành công");
-      let recordPrev = [...categories].filter(item => item.id !== curentDataEdit.id)
-      setCategories([
-        e,
-        ...recordPrev
-      ])
-      
-    } catch ({ response }) {
-        const { data } = response;
-        message.error(data.message);
-    }
+    updateCate(
+        {
+            variables: e,
+            refetchQueries: [{ query: getCategories }]
+        },
+    )
   }
   // DELETE CATEGORY
   const handleDelete =  async (id) => {
-    try {
-      await axios.delete(API  + id);
-      const newProduct = categories.filter((item) => item.id !== id);
-      setCategories(newProduct)
-      message.success("Xóa sản phẩm thành công")
-    }catch ({response}) {
-      console.log(response);
-    }
+    deleteCat({
+          variables: {id},
+          refetchQueries: [{ query: getCategories }]
+      },)
   }
   // ADD CATEGORY
   const showModalAdd = () => {
@@ -113,17 +87,12 @@ export default function CategoryManage() {
 
   };
   const handleAddCategory = async (e) => {
-    try {
-      await axios.post("/api/admin/product-category", e);
-      message.success("Thêm tin tức thành công");
-      window.location.reload()
-      // setCategories(prev => {
-      //   return [...prev, e]
-      // })  
-      } catch ({ response }) {
-          const { data } = response;
-          message.error(data.message);
-      }
+    addCate(
+        {
+            variables: e,
+            refetchQueries: [{query: getCategories}]
+        },
+    )
     }
   return (
     <>

@@ -1,52 +1,120 @@
-import React from 'react'
-import './style.css'
-import {
-    DesktopOutlined,
-    FileOutlined,
-    PieChartOutlined,
-    UserOutlined,
-  } from '@ant-design/icons';
-import { Layout} from 'antd';
-import { useState } from 'react';
-import HeaderComponent from './components/HeaderComponent/header';
-import SliderComponent from './components/SliderComponent/slider';
-import FooterComponent from './components/FooterComponent/footer';
-import ContentComponent from './components/ContentComponent/content';
+import { Layout, Menu,   Avatar,
+  Dropdown, } from 'antd';
 
+import routes from './routes';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import MenuContext from './components/context/menu';
+import { useMatch } from 'react-router-dom';
+import '../../app.css'
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
+const AdminDashboard = ({ children }) => {
+  const navigate = useNavigate();
+//   useEffect(() => {
+//       const token = localStorage.getItem("access_token");
+//       if (!token) {
+//           navigate("/admin/login");
+//       }
+//   }, []);
 
-function getItem(label, key, icon, children) {
-    return {
-      key,
-      icon,
-      children,
-      label,
+  let selectedKey = null;
+  let openKey = null;
+  routes.filter(x => !x.hidden).map((x, index) => {
+      if (!x.childs) {
+          const path = useMatch({
+              path: "admin/" + x.path,
+              end: true
+          });
+          if (!!path) {
+              selectedKey = "" + index;
+              openKey = null;
+          }
+      } else {
+          x.childs.filter(x => !x.hidden).map((c, cIndex) => {
+              const path = useMatch({
+                  path: "admin/" + x.path + "/" + c.path,
+                  end: true
+              });
+              if (!!path) {
+                  openKey = "" + index;
+                  selectedKey = index + "-" + cIndex;
+              }
+          })
+      }
+  });
+  const handleLogout = () => {
+      localStorage.removeItem("access_token");
+      navigate("/admin/login");
     };
-  }
-  
-const items = [
-    getItem('Users Manage', '1', <PieChartOutlined />),
-    getItem('Product Manage', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-      getItem('Tom', '3'),
-      getItem('Bill', '4'),
-      getItem('Alex', '5'),
-    ]),
-    getItem('Files', '9', <FileOutlined />),
-  ];
-export default function AdminDashBoard() {
-    const [collapsed, setCollapsed] = useState(false);
-    return (
-      <Layout
-        style={{
-          minHeight: '100vh',
-        }}
-      >
-        <SliderComponent items = {items} collapsed = {collapsed} setCollapsed = {setCollapsed}/>
-        <Layout className="site-layout">
-            <HeaderComponent/>
-            <ContentComponent/>
-            <FooterComponent/>
-        </Layout>
-      </Layout>
-    );
+  const menu = (
+      <Menu style={{ width: 220 }}>
+          <Menu.Item key="0">
+              <Link to="/admin/profile">Hồ sơ</Link>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="3" onClick={handleLogout}>
+              Đăng xuất
+          </Menu.Item>
+      </Menu>
+  );
+  return (
+      <Layout style={{ minHeight: '100vh' }}>
+          <Sider >
+              <div className="logo" >
+                  <h2 style={{ color: 'white' }}>Admin</h2>
+                  {/* <img src={
+                      collapsed ? "/images/logo-mini.png" : "/images/logo.png"
+                  } /> */}
+              </div>
+              <Menu theme="dark" defaultSelectedKeys={[selectedKey]}
+                  defaultOpenKeys={[openKey]}
+                  mode="inline">
+                  {
+                      routes
+                          .filter(x => !x.hidden)
+                          .map((r, index) => {
+                              const childs = r.childs?.filter(x => !x.hidden);
+                              if (childs) {
+                                  return <SubMenu key={index} icon={r.icon} title={r.title}>
+                                      {
+                                          childs.map((c, cIndex) => <Menu.Item key={index + "-" + cIndex}><Link to={r.path + "/" + c.path}>{c.title}</Link></Menu.Item>)
+                                      }
+                                  </SubMenu>
+                              } else {
+                                  return <Menu.Item key={index} title={r.title} icon={r.icon}>
+                                      <Link to={r.path}>{r.title}</Link>
+                                  </Menu.Item>
+                              }
+                          })
+                  }
+              </Menu>
+          </Sider>
+          <Layout className="site-layout">
+              <Header className="site-layout-background" style={{ padding: 0 }} >
+                  <Dropdown overlay={menu} trigger={["click"]}>
+                      <Avatar
+                          className="custom-icon"
+                          style={{
+                              backgroundColor: "#ff7979",
+                              fontWeight: 500,
+                              position: 'absolute',
+                              top: 15,
+                              right: 15,
+                              cursor: 'pointer'
+                          }}
+                      >
+                          { "A"}
+                      </Avatar>
+                  </Dropdown>
+              </Header>
+              <Content style={{ margin: '0 16px' }}>
+                  {children}
+              </Content>
+              <Footer style={{ textAlign: 'center' }}>Shop  Created by Blacker</Footer>
+          </Layout>
+      </Layout >
+  );
 }
+export default AdminDashboard;

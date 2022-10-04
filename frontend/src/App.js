@@ -4,7 +4,10 @@ import Product from './pages/Product';
 import {
   BrowserRouter,
   Routes,
-  Route,  
+  Route,
+  Navigate,
+  Outlet
+
 } from "react-router-dom";
 import { useState } from 'react'
 import React from 'react';
@@ -14,20 +17,10 @@ import CheckoutComponent from './pages/Cart/components/CheckoutComponent/checkou
 import AdminDashBoard from './pages/AdminDashboard';
 import ProductManage from './pages/AdminDashboard/components/ContentComponent/ProductManage/productmanage';
 import CategoryManage from './pages/AdminDashboard/components/ContentComponent/CategoryManage/category';
-
-// function getToken() {
-//   const tokenString = sessionStorage.getItem("user");
-//     const userToken = JSON.parse(tokenString);
-//     return userToken?.token
-// }
-// function setToken(userToken) {
-//   sessionStorage.setItem("user", JSON.stringify(userToken));
-// }
+import LoginAdmin from './pages/AdminDashboard/components/LoginAdminComponent/loginadmin';
+import routes from './pages/AdminDashboard/routes';
 function App() {
-  // const token = getToken()
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
+  const isLoggin = localStorage.getItem("access_token") 
   return (
     <>
       <BrowserRouter>
@@ -38,9 +31,27 @@ function App() {
             <Route  path="/category"  index element={<Category />} />
             <Route  path="/cart"  index element={<Cart />} />
             <Route  path="/checkout"  index element={<CheckoutComponent/>} />
-            <Route  path="/admin"  index element={<AdminDashBoard/>} />
+            <Route  path="/admin" index element={isLoggin ? <AdminDashBoard/> :  <Navigate to="/admin/login" replace />} />
             <Route  path="/admin-product"  index element={<ProductManage/>} />
             <Route  path="/admin-category"  index element={<CategoryManage/>} />
+            <Route  path="/admin/login"  index element={<LoginAdmin/>} />
+            <Route path="/admin" element={<AdminDashBoard><Outlet /></AdminDashBoard>}>
+                {
+                    routes
+                        .map(({ path, component: Comp, childs }) => {
+                            return childs ? childs.map(({ path: childPath, component: ChildComp }) => <Route
+                                path={path + "/" + childPath}
+                                element={<ChildComp />}
+                            />
+                            ) : <Route
+                                path={path}
+                                key={path}
+                                element={<Comp />}
+                            />
+                        }
+                        )}
+                <Route index />
+            </Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -28,7 +28,7 @@ export default function Header(props) {
   const handleOpen = () => {
     setOpen(true);
   };
-  if (window.location.pathname === '/admin') return null;
+  if (window.location.pathname === '/admin' || window.location.pathname === '/loginadmin') return null;
   return (
     <header>
       <div className="navbar">

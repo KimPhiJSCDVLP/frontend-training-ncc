@@ -1,5 +1,6 @@
 import axios from "axios";
 import {message} from 'antd'
+import { useNavigate } from 'react-router';
 const API_URL = "http://localhost:5000/api/v1/auth/";
 const register = (fullName, email, password) => {
   return axios.post(API_URL + "register", {
@@ -29,12 +30,11 @@ const login = async (email, password) => {
       }
 };
 
-
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("access_token");
 };
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(localStorage.getItem("access_token"));
 };
 const AuthService = {
   register,

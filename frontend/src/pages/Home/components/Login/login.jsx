@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthService from '../../../../services/auth.services'
 import {useState} from 'react'
+import { useNavigate } from 'react-router';
 
 export default function Login() {
    const [email, setEmail] = useState(' ')
@@ -17,6 +18,7 @@ export default function Login() {
          await AuthService.login(email,password);
          // redirect
          console.log('log');
+        //  navigate("/admin");
         }
         catch(e){
           console.log(e,'e');

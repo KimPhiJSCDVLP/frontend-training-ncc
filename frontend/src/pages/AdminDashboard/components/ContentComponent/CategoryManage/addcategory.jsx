@@ -28,17 +28,15 @@ export default function AddCategory(props) {
                 <Input/>
             </Form.Item>
             <Form.Item
-                name="slug"
-                label="Đường dẫn"
-                style={{ display: 'none' }}
+                label="Mô tả"
+                name="des"
+                rules={[{ required: true }]}
             >
-                <Input
-                    addonBefore={"http://" + window.location.origin}
-                />
+                <Input/>
             </Form.Item>
             <Form.Item
-                label="Mô tả"
-                name="description"
+                label="Hình ảnh"
+                name="image"
                 rules={[{ required: true }]}
             >
                 <Input/>

@@ -1045,3 +1045,6 @@ input.input-search{
 .form-check-label {
     font-size: .875rem;
 }
+.modal{
+    background-color:rgba(0, 0, 0, 0.6);
+}

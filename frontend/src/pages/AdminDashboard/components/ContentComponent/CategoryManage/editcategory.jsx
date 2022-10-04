@@ -30,23 +30,28 @@ export default function EditCategory(props) {
         >
             <Form.Item
                 label="Tên Danh Mục"
+                name="id"
+                rules={[{ required: true }]}
+            >
+                <Input disabled/>
+            </Form.Item>
+            <Form.Item
+                label="Tên Danh Mục"
                 name="name"
                 rules={[{ required: true }]}
             >
                 <Input/>
             </Form.Item>
             <Form.Item
-                name="slug"
-                label="Đường dẫn"
-                style={{ display: 'none' }}
+                label="Mô tả"
+                name="des"
+                rules={[{ required: true }]}
             >
-                <Input
-                    addonBefore={"http://" + window.location.origin}
-                />
+                <Input/>
             </Form.Item>
             <Form.Item
-                label="Mô tả"
-                name="description"
+                label="Hình ảnh"
+                name="image"
                 rules={[{ required: true }]}
             >
                 <Input/>

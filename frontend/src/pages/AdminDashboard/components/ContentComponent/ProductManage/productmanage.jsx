@@ -5,14 +5,22 @@ import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { useState ,useEffect } from 'react';
 import EditProduct from './editproduct';
 import AddProduct from './addproduct';
-import axios from 'axios';
+import { useQuery ,useMutation } from '@apollo/client'
+import { getAllProducts} from '../../../../../graphql/querydata'
+import {ADD_PRODUCT , DELETE_PRODUCT ,UPDATE_PRODUCT} from '../../../../../graphql/mutation'
+
 export default function ProductManage() {
-    const API = '/api/admin/product'
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [curentDataEdit, setCurentDataEdit] = useState(null);
     const [isModalAddVisible, setIsModalAddVisible] = useState(false);
-    const [products, setProducts] = useState([]);
+    const { loading: loadingcate, error: errorcate, data: datacate } = useQuery(getAllProducts)
     const [loading, setLoading] = useState(false);
+    const [addProduct, Mutation] = useMutation(ADD_PRODUCT);
+    const [deleteProduct, MutationDel] = useMutation(DELETE_PRODUCT);
+    const [updateProduct, MutationEdit] = useMutation(UPDATE_PRODUCT);
+
+    //GET ALL PRODUCT
+    const products =  datacate?.products
     //Column in table
     const columns = [
       {
@@ -24,7 +32,7 @@ export default function ProductManage() {
         dataIndex: 'image',
         render: (text, record) => {
           return (
-            <img src={'http://localhost:8000' + record.thumbnail} width = {50} height = {50}/>
+            <img src={record.image} width = {50} height = {50}/>
             )
         }
       },
@@ -34,7 +42,14 @@ export default function ProductManage() {
       },
       {
         title: 'Mô tả',
-        dataIndex: 'description',
+        dataIndex: 'des',
+        render : (text,record) => {
+          return (
+            <span>
+              <div dangerouslySetInnerHTML={{ __html:record.des }} />
+            </span>
+          )
+        }
       },
       {
         title: 'Số lượng',
@@ -46,23 +61,10 @@ export default function ProductManage() {
         render: (text, record) => {
           return (
               <span>
-                 {record.price.toLocaleString()}
+                 {record.price}
               </span>
           );
       },
-      },
-      {
-        title: "Ngày tạo",
-          render: (text, record, index) => {
-              return (
-                  <span>
-                      {/* {moment(record.created_at).format(
-                          "DD/MM/YYYY, hh:mm"
-                      )} */}
-                      {record.created_at}
-                  </span>
-              );
-                    }
       },
       {
         title: 'Action',
@@ -77,30 +79,14 @@ export default function ProductManage() {
         ),
       },
     ];
-    //GET ALL PRODUCT
-    useEffect(() => {
-      setLoading(true);
-      setTimeout(() => {
-        axios
-        .get(API)
-        .then((res) => {
-          const products = res.data;
-          setProducts(products.data);
-          setLoading(false);
-        })
-        .catch((error) => console.log(error));
-      },2000) 
-    }, []);
     // Delete sản phẩm 
     const handleDelete =  async (id) => {
-      try {
-        await axios.delete(API + "/" + id);
-        const newProduct = products.filter((item) => item.id !== id);
-        setProducts(newProduct)
-        message.success("Xóa sản phẩm thành công")
-      }catch ({response}) {
-        console.log(response);
-      }
+      deleteProduct(
+        {
+            variables: {id},
+            refetchQueries: [{query: getAllProducts}]
+        } 
+      ) 
     }
     const onChange = (pagination, filters, sorter, extra) => {
       console.log('params', pagination, filters, sorter, extra);
@@ -114,24 +100,13 @@ export default function ProductManage() {
       console.log(currentRow);
     };
     const editProductHandle = async (e) => {
-        if(e && e.categories && e.categories.length){
-          e.categories = e.categories.map(item => ({category_id: item}))
-        }
-        try {
-            await axios.put("/api/admin/product/" + curentDataEdit.id, e);
-            message.success("Sữa sản phẩm thành công");
-            let recordPrev = [...products].filter(item => item.id !== curentDataEdit.id)
-            setProducts([
-              e,
-              ...recordPrev
-            ])
-        } catch ({ response }) {
-            const { data } = response;
-            console.log(e);
-            message.error(data.message);
-        }
-        
-    };  
+      updateProduct(
+        {
+            variables: e,
+            refetchQueries: [{query: getAllProducts}]
+        } 
+      ) 
+    }
     const handleCancel = () => {
         setIsModalVisible(false);
     };
@@ -145,19 +120,13 @@ export default function ProductManage() {
    
     };
     const addProductHandle = async (e) => {
-      if(e && e.categories && e.categories.length){
-        e.categories = e.categories.map(item => ({category_id: item}))
-        }
-        try {
-            await axios.post("/api/admin/product", e);
-            message.success("Thêm sản phẩm thành công");
-            setProducts(prev => {
-                      return [...prev, e]
-                    })
-        } catch ({ response }) {
-            const { data } = response;
-            message.error(data.message);
-        }
+      addProduct(
+        {
+            variables: e,
+            refetchQueries: [{query: getAllProducts}]
+        },
+    )
+
         };
     return(
         <>
